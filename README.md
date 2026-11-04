@@ -21,7 +21,7 @@ Abra `http://localhost:3000`.
 
 ## GitHub Pages
 
-O workflow em `.github/workflows/pages.yml` publica o conteúdo estático a cada push em `main`. No GitHub, confirme em **Settings → Pages** que a fonte está configurada para **GitHub Actions**.
+O repositório já está preparado para o modo clássico do Pages: em **Settings → Pages**, escolha **Deploy from a branch**, selecione `main` e a pasta `/ (root)`. Depois de salvar, o GitHub gera a URL pública do site e cada push em `main` atualiza o conteúdo.
 
 ## Nota sobre emulação real
 
