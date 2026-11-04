@@ -1,0 +1,9 @@
+{
+  "name": "ORBIT PS2",
+  "short_name": "ORBIT",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#090c12",
+  "theme_color": "#9b8cff",
+  "description": "Interface local de emulação para navegador"
+}

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#090c12" />
+    <meta name="description" content="ORBIT PS2 — uma bancada de emulação local para navegador, feita para toque, teclado e gamepad." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="https://glisse.kelvinzhang.ca/favicon.ico" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <title>ORBIT PS2 — local browser console</title>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="side-rail" aria-label="Navegação principal">
+        <a class="brand-mark" href="#home" aria-label="ORBIT PS2 início">
+          <span class="brand-orbit"></span><span class="brand-word">ORBIT</span><span class="brand-sub">PS2</span>
+        </a>
+        <nav class="rail-nav">
+          <button class="nav-item active" data-view="home" aria-label="Início"><span class="nav-icon">⌂</span><span>Início</span></button>
+          <button class="nav-item" data-view="library" aria-label="Biblioteca"><span class="nav-icon">▦</span><span>Biblioteca</span></button>
+          <button class="nav-item" data-view="session" aria-label="Sessão"><span class="nav-icon">◉</span><span>Sessão</span></button>
+          <button class="nav-item" data-view="settings" aria-label="Configurações"><span class="nav-icon">⚙</span><span>Ajustes</span></button>
+        </nav>
+        <div class="rail-foot"><span class="online-dot"></span><span>Local first</span></div>
+      </aside>
+
+      <main class="main-content" id="home">
+        <header class="topbar">
+          <div class="crumb"><span class="eyebrow">BANCADA / <span id="view-label">INÍCIO</span></span><span class="live-pill"><i></i> pronto</span></div>
+          <div class="top-actions">
+            <button class="icon-button" id="theme-toggle" aria-label="Alternar atmosfera de interface">◐</button>
+            <button class="avatar-button" aria-label="Perfil local">OP</button>
+          </div>
+        </header>
+
+        <section class="view active-view" data-panel="home" aria-labelledby="hero-title">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <p class="kicker"><span class="signal-line"></span> CONSOLE DE BOLSO / 01</p>
+              <h1 id="hero-title">Jogue no seu<br /><em>próprio orbit.</em></h1>
+              <p class="hero-lede">Uma bancada PS2 que vive no navegador. Carregue seus arquivos localmente, conecte um controle e atravesse a tela sem deixar o dispositivo.</p>
+              <div class="hero-actions">
+                <button class="button button-primary" data-action="open-loader"><span>＋</span> Carregar jogo</button>
+                <button class="button button-glass" data-view-target="session"><span class="play-glyph">▶</span> Ver sessão</button>
+              </div>
+              <div class="hero-footnote"><span class="mini-check">✓</span> Seus arquivos não saem deste dispositivo</div>
+            </div>
+            <div class="hero-console" aria-label="Prévia do console ORBIT">
+              <div class="console-glass">
+                <div class="console-topline"><span>ORBIT / 001</span><span>LOCAL CORE</span></div>
+                <div class="console-screen-wrap">
+                  <canvas id="hero-canvas" width="900" height="560" aria-label="Visualização de demonstração do jogo"></canvas>
+                  <div class="screen-scanlines"></div>
+                  <div class="screen-ui"><span class="screen-chip">DEMO SCENE</span><span id="fps-label">60 FPS</span></div>
+                </div>
+                <div class="console-controls">
+                  <div class="dpad mini-dpad"><span class="up">▲</span><span class="right">▶</span><span class="down">▼</span><span class="left">◀</span><b></b></div>
+                  <div class="console-center"><span class="led"></span><span>READY</span></div>
+                  <div class="mini-face"><span class="mini-triangle">△</span><span class="mini-circle">○</span><span class="mini-cross">×</span><span class="mini-square">□</span></div>
+                </div>
+              </div>
+              <div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div>
+            </div>
+          </div>
+
+          <div class="home-body">
+            <div class="section-heading"><div><p class="kicker">ACESSO RÁPIDO</p><h2>Seu espaço de jogo</h2></div><button class="text-button" data-view-target="library">Abrir biblioteca <span>↗</span></button></div>
+            <div class="quick-grid">
+              <article class="glass-card continue-card" data-action="continue-game">
+                <div class="card-meta"><span class="card-index">01</span><span class="muted-label">CONTINUAR</span><span class="card-arrow">↗</span></div>
+                <div class="cover-art cover-ico"><div class="cover-sun"></div><div class="cover-moon"></div><div class="cover-mountain"></div><span>SHADOW<br />OF THE<br /><b>COLOSSUS</b></span></div>
+                <div class="card-info"><h3>Shadow of the Colossus</h3><div class="meta-row"><span>PS2 · ISO</span><span>há 2 dias</span></div></div>
+                <div class="progress-track"><span style="width: 68%"></span></div><span class="progress-label">68% da última sessão</span>
+              </article>
+              <article class="glass-card import-card" data-action="open-loader">
+                <div class="import-icon">＋</div><h3>Adicionar jogo local</h3><p>ISO, BIN ou arquivo compatível. Nada é enviado para a nuvem.</p><span class="import-cta">Selecionar arquivo <span>→</span></span>
+              </article>
+              <article class="glass-card status-card">
+                <div class="card-meta"><span class="card-index">03</span><span class="muted-label">SISTEMA</span><span class="status-live"><i></i> ONLINE</span></div>
+                <h3>Pronto para a próxima fase.</h3><p class="status-copy">A interface está otimizada para o seu dispositivo atual.</p>
+                <div class="device-row"><span class="device-icon">⌨</span><span class="device-icon">◉</span><span class="device-icon">☊</span><span class="device-caption" id="device-caption">Teclado disponível</span></div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" data-panel="library" aria-labelledby="library-title">
+          <div class="page-heading"><div><p class="kicker">COLEÇÃO LOCAL / 02</p><h1 id="library-title">Biblioteca</h1><p>Seus jogos ficam aqui, organizados pelo próprio dispositivo.</p></div><button class="button button-primary" data-action="open-loader">＋ Importar arquivo</button></div>
+          <div class="library-toolbar glass-strip"><label class="search-field"><span>⌕</span><input id="search-input" type="search" placeholder="Buscar na biblioteca" aria-label="Buscar na biblioteca" /></label><div class="segmented" role="group" aria-label="Ordenar biblioteca"><button class="segment active" data-sort="recent">Recentes</button><button class="segment" data-sort="az">A–Z</button><button class="segment" data-sort="size">Tamanho</button></div></div>
+          <div class="library-grid" id="library-grid"></div>
+          <div class="empty-library" id="empty-library"><div class="empty-orbit">◌</div><h3>Nenhum jogo importado ainda</h3><p>Comece pelo botão de importar. A biblioteca usa apenas metadados locais e não faz upload da sua ROM.</p><button class="button button-glass" data-action="open-loader">Selecionar primeiro arquivo</button></div>
+        </section>
+
+        <section class="view" data-panel="session" aria-labelledby="session-title">
+          <div class="session-heading"><div><p class="kicker">RUNTIME / 03</p><h1 id="session-title">Sessão ativa</h1></div><div class="session-heading-actions"><span class="session-status" id="session-status"><i></i> EM ESPERA</span><button class="button button-glass compact" data-action="toggle-fullscreen">⛶ Tela cheia</button></div></div>
+          <div class="emulator-layout">
+            <div class="emulator-stage glass-card" id="emulator-stage">
+              <div class="stage-topbar"><span id="session-game-name">DEMO SCENE / ORBIT</span><span><b id="stage-fps">60</b> FPS · <span id="stage-resolution">1280×720</span></span></div>
+              <div class="stage-screen"><canvas id="session-canvas" width="1280" height="720" aria-label="Tela de emulação"></canvas><div class="stage-overlay" id="stage-overlay"><div class="overlay-mark">◉</div><strong>Pronto para iniciar</strong><span>Carregue uma ROM local ou rode a cena de demonstração</span><button class="button button-primary" data-action="start-demo">▶ Iniciar demo</button></div><div class="screen-vignette"></div></div>
+              <div class="stage-controls"><button class="control-button" data-action="reset-session">↺ <span>Reiniciar</span></button><button class="control-button" data-action="toggle-pause">Ⅱ <span id="pause-label">Pausar</span></button><button class="control-button danger" data-action="stop-session">■ <span>Encerrar</span></button><div class="stage-spacer"></div><label class="volume-control">VOL <input id="volume-slider" type="range" min="0" max="100" value="70" /><span id="volume-value">70</span></label></div>
+            </div>
+            <aside class="session-side">
+              <div class="glass-card side-panel"><div class="panel-title"><span>CONTROLES</span><button class="text-button tiny" data-view-target="settings">mapear ↗</button></div><div class="input-hint"><span class="keycap">W A S D</span><span>movimento</span></div><div class="input-hint"><span class="keycap">J K L I</span><span>ação</span></div><div class="input-hint"><span class="keycap">ESC</span><span>pausar</span></div><div class="gamepad-status"><i></i><span id="gamepad-label">gamepad não conectado</span></div></div>
+              <div class="glass-card side-panel settings-preview"><div class="panel-title"><span>AJUSTE RÁPIDO</span><span class="panel-index">04</span></div><div class="setting-row"><span>Desempenho</span><strong id="quality-label">Balanceado</strong></div><div class="setting-row"><span>Controles touch</span><button class="switch on" id="touch-switch" role="switch" aria-checked="true"><i></i></button></div><div class="setting-row"><span>Scanlines</span><button class="switch" id="scanline-switch" role="switch" aria-checked="false"><i></i></button></div></div>
+            </aside>
+          </div>
+          <div class="touch-deck" id="touch-deck" aria-label="Controles virtuais touch"><div class="touch-dpad"><button data-key="ArrowUp">▲</button><button data-key="ArrowLeft">◀</button><button data-key="ArrowDown">▼</button><button data-key="ArrowRight">▶</button></div><div class="touch-center"><button data-key="Escape">SELECT</button><button data-key="Enter">START</button></div><div class="touch-face"><button class="triangle" data-key="i">△</button><button class="circle" data-key="l">○</button><button class="cross" data-key="k">×</button><button class="square" data-key="j">□</button></div></div>
+        </section>
+
+        <section class="view" data-panel="settings" aria-labelledby="settings-title">
+          <div class="page-heading"><div><p class="kicker">PREFERÊNCIAS / 04</p><h1 id="settings-title">Ajustes</h1><p>Controle a bancada como você controla a experiência.</p></div><span class="save-state">✓ salvo neste dispositivo</span></div>
+          <div class="settings-grid"><div class="glass-card settings-section"><div class="section-number">01</div><h3>Controles</h3><p>O ORBIT escuta teclado, gamepad e toque ao mesmo tempo.</p><div class="mapping-row"><span>Direção</span><div><span class="keycap">W</span><span class="keycap">A</span><span class="keycap">S</span><span class="keycap">D</span></div></div><div class="mapping-row"><span>Ação principal</span><div><span class="keycap">J</span><span class="keycap">K</span><span class="keycap">L</span><span class="keycap">I</span></div></div><button class="button button-glass full-width" id="remap-button">＋ Remapear teclas</button></div><div class="glass-card settings-section"><div class="section-number">02</div><h3>Vídeo</h3><p>Escolha entre fluidez e definição para o hardware atual.</p><div class="setting-row"><span>Perfil gráfico</span><div class="segmented mini" role="group"><button class="segment active" data-quality="balanced">Balanceado</button><button class="segment" data-quality="sharp">Nítido</button><button class="segment" data-quality="lite">Leve</button></div></div><div class="setting-row"><span>Resolução interna</span><strong id="resolution-value">1× · 1280×720</strong></div><input class="full-range" id="resolution-slider" type="range" min="1" max="3" value="1" /><div class="setting-row"><span>Reduzir movimento</span><button class="switch" data-setting="motion" role="switch" aria-checked="false"><i></i></button></div></div><div class="glass-card settings-section"><div class="section-number">03</div><h3>Áudio</h3><p>Mixagem simples para jogar com fone ou alto-falante.</p><div class="setting-row"><span>Volume master</span><strong id="master-value">70%</strong></div><input class="full-range" id="master-slider" type="range" min="0" max="100" value="70" /><div class="setting-row"><span>Áudio espacial</span><button class="switch on" data-setting="spatial" role="switch" aria-checked="true"><i></i></button></div><div class="setting-row"><span>Som de interface</span><button class="switch on" data-setting="ui-sound" role="switch" aria-checked="true"><i></i></button></div></div><div class="glass-card settings-section about-section"><div class="about-orbit">◉</div><div><p class="kicker">ORBIT PS2 / v0.1</p><h3>Local por escolha.</h3><p>Uma interface experimental para emulação no browser. O runtime real depende do core PS2 que você conectar ao projeto; a bancada, os controles e a biblioteca já estão prontos para receber esse próximo módulo.</p></div></div></div>
+        </section>
+
+        <footer class="app-footer"><span>ORBIT PS2 / LOCAL FIRST</span><span>feito para telas pequenas e grandes</span></footer>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navegação móvel"><button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span><span>Início</span></button><button class="nav-item" data-view="library"><span class="nav-icon">▦</span><span>Jogos</span></button><button class="nav-item" data-view="session"><span class="nav-icon">◉</span><span>Jogar</span></button><button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span><span>Ajustes</span></button></nav>
+    </div>
+    <input type="file" id="rom-input" accept=".iso,.bin,.img,.chd,.7z,.zip,application/octet-stream" multiple hidden />
+    <div class="toast" id="toast" role="status" aria-live="polite"><span class="toast-dot"></span><span id="toast-message">Pronto.</span></div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
